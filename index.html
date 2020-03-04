@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews</title>
+</head>
+
+<body>
+  <script type="module">
+    import reviews from './data.js'
+    console.log(reviews)
+    customElements.define('data-review', class extends HTMLElement {
+      constructor() {
+        super()
+        this.pElem = document.createElement('p');
+        this.pElem.textContent = this.textContent;
+        this.attachShadow({ mode: 'open' }).appendChild(this.pElem)
+      }
+      setContent(txt) {
+        this.pElem.textContent = txt
+      }
+    })
+
+    reviews.forEach((review) => {
+      const el = document.createElement('data-review')
+      el.setContent(review.content)
+      document.body.appendChild(el)
+    })
+  </script>
+</body>
+
+</html>
