@@ -6,7 +6,7 @@ async function run() {
   const page = await browser.newPage()
   let reviews = []
   async function getPageData(pageNumber = 1) {
-    await page.goto('https://platzi.com/cursos/html5-css3/opiniones/1/')
+    await page.goto(`https://platzi.com/cursos/html5-css3/opiniones/${pageNumber}/`)
     // await page.screenshot({
     //   path: 'screenshot.png',
     //   fullPage: true,
