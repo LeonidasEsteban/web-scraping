@@ -19,7 +19,7 @@ async function run() {
       $reviews.forEach(($review) => {
         data.push({
           username: $review.querySelector('.Review-name').textContent,
-          rating: $review.querySelector('.Review-stars .fulled').length,
+          rating: $review.querySelectorAll('.Review-stars .fulled').length,
           content: $review.querySelector('.Review-description').textContent.trim(),
         })
       })
@@ -30,7 +30,7 @@ async function run() {
     })
     reviews = [...reviews, ...data.reviews]
     console.log(`page ${pageNumber} of ${data.totalPages} completed`)
-    if (pageNumber <= data.totalPages) {
+    if (pageNumber < data.totalPages) {
       getPageData(pageNumber + 1)
     } else {
       fs.writeFile('data.js', `export default ${JSON.stringify(reviews)}`, () => {
